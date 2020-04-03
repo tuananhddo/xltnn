@@ -1,6 +1,5 @@
 import argparse
 import os
-import tempfile
 import queue
 import sys
 import keyboard
@@ -8,7 +7,6 @@ import sounddevice as sd
 import soundfile as sf
 import numpy  # Make sure NumPy is loaded before it is used in the callback
 assert numpy  # avoid "imported but unused" message (W0611)
-import time
 import io
 def int_or_str(text):
     """Helper function for argument parsing."""
@@ -59,8 +57,6 @@ def recorder( file_name):
         # soundfile expects an int, sounddevice provides a float:
         args.samplerate = int(device_info['default_samplerate'])
 
-    #open(file_name, 'w')
-    # Make sure the file is opened before recording anything:
     try:
         os.remove(file_name)
     except:
@@ -82,7 +78,8 @@ for i in range(100):
     data = data.replace("..", ".")
 sentences = data.split(".")
 id = 0
-detail = ""
+
+detail = "https://vnexpress.net/thoi-su/hang-loat-cua-hang-dong-cua-4075213.html"
 for sentence in sentences:
     if sentence == "":
         continue
